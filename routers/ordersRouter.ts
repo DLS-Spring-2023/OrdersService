@@ -8,11 +8,11 @@ const router = Router();
 
 const ordersService = new OrdersService();
 
-router.get('/purchase-history', (req, res) => {
-  const userId = 1;
+router.get('/purchase-history/:customerId', (req, res) => {
+  const customerId = parseInt(req.params.customerId);
 
   ordersService
-    .getOrdersByClientId(userId)
+    .getOrdersByClientId(customerId)
     .then((orders) => {
       res.send(orders);
     })
@@ -23,10 +23,10 @@ router.get('/purchase-history', (req, res) => {
 
 router.get('/create-order', (req, res) => {
   const newOrder: IOrderEntity = {
-    customer_id: 1,
+    customer_id: req.body.customerId,
     order_date: new Date(),
-    items_id: [1, 2, 3],
-    total_price: 100,
+    items_id: req.body.itemsId,
+    total_price: req.body.totalPrice,
   };
 
   ordersService
