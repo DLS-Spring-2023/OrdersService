@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+
 import { IOrderEntity } from './orders.entity';
 
 const orderSchema: Schema = new mongoose.Schema(
