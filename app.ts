@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import * as express from 'express';
+import express from 'express';
 
 import OrdersRouter from './routers/ordersRouter';
 import { connectToDB } from './db/connection/db-connection';

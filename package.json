@@ -2,12 +2,16 @@
   "name": "orderservice",
   "version": "1.0.0",
   "description": "Order service for the DLS exam project",
-  "main": "app.ts",
+  "main": "dist/app.js",
   "scripts": {
-    "serve": "nodemon app.ts",
-    "test": "echo \"No tests yet...\""
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
-  "author": "DLS Spring 2023",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DLS-Spring-2023/OrdersService.git"
+  },
+  "author": "Pawel Stepien",
   "license": "MIT",
   "devDependencies": {
     "@types/express": "^4.17.17",
