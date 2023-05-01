@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use('/orders', OrdersRouter);
 
-app.get('/', (req, res) => res.send('Testing'));
+app.get('/', (req, res) => res.send('Testing azure'));
 
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
