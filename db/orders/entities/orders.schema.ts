@@ -7,6 +7,10 @@ const orderSchema: Schema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    customer_email: {
+      type: String,
+      required: true,
+    },
     order_date: {
       type: Date,
       required: true,
