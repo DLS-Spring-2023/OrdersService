@@ -7,6 +7,7 @@ import { connectToDB } from './db/connection/db-connection';
 config();
 
 const app = express();
+
 app.use(express.json());
 
 app.use('/orders', OrdersRouter);
