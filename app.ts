@@ -12,6 +12,8 @@ app.use(express.json());
 
 app.use('/orders', OrdersRouter);
 
+app.get('/', (req, res) => res.send('Hello World'));
+
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 connectToDB().then(() => {
