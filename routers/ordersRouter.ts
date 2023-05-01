@@ -21,7 +21,7 @@ router.get('/purchase-history/:customerId', (req, res) => {
     });
 });
 
-router.get('/create-order', (req, res) => {
+router.post('/create-order', (req, res) => {
   const newOrder: IOrderEntity = {
     customer_id: req.body.customerId,
     customer_email: req.body.customerEmail,
