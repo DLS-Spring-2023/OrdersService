@@ -1,4 +1,4 @@
-# OrdersServiceApi
+# Orders Service Api
 API Service for Orders
 
 ## You have available the following endpoints:
@@ -7,17 +7,23 @@ API Service for Orders
 
 ## Create a new order
 
+<br>
+
 Request: POST '/orders/create-order'
 
 Takes a body with following properties
 
 Example:
 
+```json
   {
-  customer_email: string;
-  items_id: number[];
-  total_price: number;
-}
+    customer_email: string,
+    items_id: number[],
+    total_price: number,
+  }
+```
+
+The date is insert automatically and customer_id is being taken from the authentication token.
 
 Responses:
 
@@ -31,9 +37,13 @@ Responses:
 
 ## Get all user's orders
 
+<br>
+
 Request: GET '/orders/purchase-history'
 
 Returns all orders created by the user
+
+<br>
 
 Responses:
 
