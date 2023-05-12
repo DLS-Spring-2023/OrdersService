@@ -5,7 +5,7 @@ import { IOrderEntity } from './orders.entity';
 const orderSchema: Schema = new mongoose.Schema(
   {
     customer_id: {
-      type: Number,
+      type: String,
       required: true,
     },
     customer_email: {

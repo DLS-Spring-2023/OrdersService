@@ -12,7 +12,7 @@ export class OrdersService implements IOrders {
     }
   };
 
-  getOrdersByClientId = async (clientId: number): Promise<IOrderEntity[]> => {
+  getOrdersByClientId = async (clientId: string): Promise<IOrderEntity[]> => {
     try {
       const orders: IOrderEntity[] = await Order.find({
         customer_id: clientId,
