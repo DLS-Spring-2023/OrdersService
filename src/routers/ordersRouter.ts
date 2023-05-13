@@ -1,8 +1,10 @@
 import { Router, Request, Response } from 'express';
 
-import { IOrderEntity } from '../db/orders/entities/orders.entity';
+import { IOrderEntity } from '../orders/entities/orders.entity';
 
-import { OrdersService } from '../db/orders/orders.service';
+import { OrdersService } from '../orders/orders.service';
+
+import { EmailService } from '../email/email.service';
 
 interface CustomRequest extends Request {
   sub?: string;
@@ -12,12 +14,17 @@ const router = Router();
 
 const ordersService = new OrdersService();
 
+const emailService = new EmailService();
+
 router.get('/purchase-history', (req: CustomRequest, res: Response) => {
   const customerId = req.sub;
   if (req.sub) {
     ordersService
       .getOrdersByClientId(customerId)
       .then((orders) => {
+        /* emailService.sendEmail().then((response) => {
+          res.send(orders).status(200);
+        }); */
         res.send(orders).status(200);
       })
       .catch((error) => {
@@ -34,7 +41,7 @@ router.post('/create-order', (req: CustomRequest, res: Response) => {
       customer_id: req.sub,
       customer_email: req.body.customerEmail,
       order_date: new Date(),
-      items_id: req.body.itemsId,
+      items: req.body.items,
       total_price: req.body.totalPrice,
     };
 

@@ -16,8 +16,8 @@ const orderSchema: Schema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    items_id: {
-      type: [Number],
+    items: {
+      type: [Object],
       required: true,
     },
     total_price: {

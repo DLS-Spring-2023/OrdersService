@@ -7,8 +7,6 @@ export const verifyTokenMiddleware = async (req, res, next) => {
     .then((res) => res.json())
     .then((json) => json.data.publicKey);
 
-  console.log(publicKey);
-
   if (authHeader) {
     const token = authHeader.split(' ')[1];
 

@@ -17,10 +17,39 @@ Example:
 
 ```json
   {
-    customer_email: string,
-    items_id: number[],
-    total_price: number,
+    customerEmail: string,
+    items: IItemEntity[],
+    totalPrice: number,
   }
+```
+
+IItemEntity has the following properties: 
+
+```
+  name: string;
+  quantity: number;
+  price: number;
+```
+
+Here is an example of a valid object: 
+
+```json
+{
+  "customerEmail": "test@test.com",
+  "items": [
+    {
+      "name": "Cap",
+      "quantity": 2,
+      "price": 40
+    },
+    {
+      "name": "Pen",
+      "quantity": 10,
+      "price": 200
+    }
+  ],
+  "totalPrice": 240
+}
 ```
 
 The date is insert automatically and customer_id is being taken from the authentication token.
