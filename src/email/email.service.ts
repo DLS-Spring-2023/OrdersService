@@ -1,26 +1,29 @@
 import { pushMessageToServiceBus, EmailingMessage } from 'dls-messagelibrary';
 
 import { IEmail } from './entities/email.interface';
+import { IItemEntity } from '../orders/entities/items.entity';
 
 export class EmailService implements IEmail {
-  sendEmail = async (): Promise<void> => {
+  sendEmail = async (
+    customerEmail: string,
+    orderId: string,
+    purchasedItems: IItemEntity[],
+    totalPrice: number
+  ): Promise<void> => {
     const messageBody: EmailingMessage = {
       body: {
-        recipientEmail: 'pstepien@interia.pl',
-        orderId: '12312',
-        purchasedItems: [{ name: 'Cap', quantity: 1, price: 10 }],
-        totalPrice: 120,
-        timestamp: 1,
+        recipientEmail: customerEmail,
+        orderId: orderId,
+        purchasedItems: purchasedItems,
+        totalPrice: totalPrice,
+        timestamp: Date.now(),
       },
     };
 
-    const MESSAGE_BUS = process.env.MESSAGE_BUS;
-    console.log(MESSAGE_BUS);
+    const CONNECTION_STRING = process.env.CONNECTION_STRING;
 
-    await pushMessageToServiceBus(
-      process.env.MESSAGE_BUS,
-      'emailing',
-      messageBody
-    );
+    if (CONNECTION_STRING) {
+      await pushMessageToServiceBus(CONNECTION_STRING, 'emailing', messageBody);
+    }
   };
 }

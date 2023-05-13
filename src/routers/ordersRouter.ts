@@ -22,9 +22,6 @@ router.get('/purchase-history', (req: CustomRequest, res: Response) => {
     ordersService
       .getOrdersByClientId(customerId)
       .then((orders) => {
-        /* emailService.sendEmail().then((response) => {
-          res.send(orders).status(200);
-        }); */
         res.send(orders).status(200);
       })
       .catch((error) => {
@@ -50,7 +47,17 @@ router.post('/create-order', (req: CustomRequest, res: Response) => {
     ordersService
       .createOrder(newOrder)
       .then((order) => {
-        res.send(order).status(200);
+        const orderId = order._id.toString();
+        emailService
+          .sendEmail(
+            order.customer_email,
+            orderId,
+            order.items,
+            order.total_price
+          )
+          .then(() => {
+            res.send(order).status(200);
+          });
       })
       .catch((error) => {
         res.send(error.message).status(400);
