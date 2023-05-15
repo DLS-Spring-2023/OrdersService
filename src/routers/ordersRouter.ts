@@ -5,6 +5,7 @@ import { IOrderEntity } from '../orders/entities/orders.entity';
 import { OrdersService } from '../orders/orders.service';
 
 import { EmailService } from '../email/email.service';
+import { IItemEntity } from '../orders/entities/items.entity';
 
 interface CustomRequest extends Request {
   sub?: string;
@@ -41,9 +42,25 @@ router.post('/create-order', (req: CustomRequest, res: Response) => {
       items: req.body.items,
       total_price: req.body.totalPrice,
     };
+    // const testItems: IItemEntity[] = [
+    //   { productId: 1, name: 'Item 1', quantity: 10, price: 20 },
+    //   { productId: 2, name: 'Item 2', quantity: 5, price: 15 },
+    //   { productId: 3, name: 'Item 3', quantity: 8, price: 25 },
+    // ];
+    // const testOrder: IOrderEntity = {
+    //   customer_id: "test",
+    //   customer_email: "test",
+    //   order_date: new Date(),
+    //   items: testItems,
+    //   total_price: 60,
+    // };
 
+    // ordersService.sendDeductRequest(newOrder.items).then((response) => {
+    //   console.log(response);
+    //   res.send(response).status(200);
+    // });
+    
     console.log(newOrder);
-
     ordersService
       .createOrder(newOrder)
       .then((order) => {
