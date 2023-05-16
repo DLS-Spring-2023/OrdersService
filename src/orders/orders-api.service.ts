@@ -4,7 +4,7 @@ import { IOrdersApi } from './entities/orders-api.interface';
 export class OrdersApiService implements IOrdersApi {
   sendDeductRequest = async (deductRequest: IDeductRequest): Promise<any> => {
     try {
-      const response = await fetch('http://localhost:3001/products/deduct/update-stock', {
+      const response = await fetch(process.env.PRODUCTS_SERVER_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
