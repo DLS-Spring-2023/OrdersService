@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(verifyTokenMiddleware);
+// app.use(verifyTokenMiddleware);
 
 app.use('/orders', OrdersRouter);
 
