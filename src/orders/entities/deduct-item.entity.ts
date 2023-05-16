@@ -1,4 +1,4 @@
-export interface IDeductItems {
+export interface IDeductItem {
   productId: number;
   deductAmount: number;
 }

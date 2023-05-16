@@ -24,6 +24,10 @@ const orderSchema: Schema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    status: {
+      type: String,
+      required: false,
+    },
   },
   { versionKey: false }
 );
