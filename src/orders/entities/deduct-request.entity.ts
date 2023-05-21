@@ -1,6 +1,6 @@
-import { IDeductItems } from "./deduct-item.entity";
+import { IDeductItem } from './deduct-item.entity';
 
 export interface IDeductRequest {
   requestId: string;
-  deductItems: IDeductItems[]
+  deductItems: IDeductItem[];
 }

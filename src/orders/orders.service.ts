@@ -6,7 +6,7 @@ import Order from './entities/orders.schema';
 import { v4 as uuidv4 } from 'uuid';
 
 import { extractProductIdsAndCreateDeductItems } from './utils/extractProductIdsAndCreateDeductItems';
-import { OrdersApiService } from './orders-api.service'
+import { OrdersApiService } from './orders-api.service';
 export class OrdersService implements IOrders {
   ordersApiService: OrdersApiService = new OrdersApiService();
 
@@ -30,6 +30,15 @@ export class OrdersService implements IOrders {
     }
   };
 
+  getOrders = async (): Promise<IOrderResponse[]> => {
+    try {
+      const orders: IOrderResponse[] = await Order.find();
+      return orders;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
   sendDeductRequest = async (items: IItemEntity[]): Promise<any> => {
     const deductItems = extractProductIdsAndCreateDeductItems(items);
     const deductRequest: IDeductRequest = {
@@ -38,5 +47,5 @@ export class OrdersService implements IOrders {
     };
 
     return this.ordersApiService.sendDeductRequest(deductRequest);
-  }
+  };
 }

@@ -3,7 +3,8 @@ import express from 'express';
 
 import OrdersRouter from './src/routers/ordersRouter';
 import { connectToDB } from './src/db/connection/db-connection';
-import { verifyTokenMiddleware } from './src/auth/verify-token-middleware';
+import { verifyUserTokenMiddleware } from './src/auth/verify-token-middleware';
+import adminRouter from './src/routers/adminRouter';
 
 config();
 
@@ -11,11 +12,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use(verifyTokenMiddleware);
+app.use('/v1/orders', OrdersRouter);
 
-app.use('/orders', OrdersRouter);
-
-app.get('/', (req, res) => res.send('Testing azure'));
+app.use('/v1/admin', adminRouter);
 
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 

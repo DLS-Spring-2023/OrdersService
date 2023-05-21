@@ -5,7 +5,7 @@ import { IOrderEntity, OrderStatus } from '../orders/entities/orders.entity';
 import { OrdersService } from '../orders/orders.service';
 
 import { EmailService } from '../email/email.service';
-import { IItemEntity } from '../orders/entities/items.entity';
+import { verifyUserTokenMiddleware } from '../auth/verify-token-middleware';
 
 interface CustomRequest extends Request {
   sub?: string;
@@ -16,6 +16,8 @@ const router = Router();
 const ordersService = new OrdersService();
 
 const emailService = new EmailService();
+
+router.use(verifyUserTokenMiddleware);
 
 router.get('/purchase-history', (req: CustomRequest, res: Response) => {
   const customerId = req.sub;
