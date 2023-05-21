@@ -9,7 +9,7 @@ API Service for Orders
 
 <br>
 
-Request: POST '/orders/create-order'
+Request: POST 'v1/orders/create-order'
 
 Takes a body with following properties
 
@@ -68,7 +68,7 @@ Responses:
 
 <br>
 
-Request: GET '/orders/purchase-history'
+Request: GET 'v1/orders/purchase-history'
 
 Returns all orders created by the user
 
